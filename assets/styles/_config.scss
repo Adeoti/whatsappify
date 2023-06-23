@@ -1,0 +1,11 @@
+$wafy_margin: (1,2,3,4,5,6,7,8,9,10);
+
+@each $mg in $wafy_margin{
+    .mb-#{$mg}{
+        margin-bottom: #{$mg}px;
+    }
+
+    .mt-#{$mg}{
+        margin-top:#{$mg}px;
+    }
+}

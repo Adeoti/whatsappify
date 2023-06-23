@@ -1,0 +1,45 @@
+@import 'config';
+.wafy-flex{
+    display:flex;
+    justify-content:space-between;
+    border:2px solid #e8ffe8;
+    padding:7px;
+   
+}
+.wafy-container{
+    .wafy-row{
+        display:grid;
+        padding:8px;
+        gap:10px;
+
+       &.two_col{
+        grid-template-columns:1fr 1fr;
+       }
+       &.one_half{
+        grid-template-columns:120px 1fr;
+       }
+    }
+    label{
+        font-weight:600 !important;
+        color:#0e153a;
+        display:block;
+       
+    }
+}
+.wafy-text-field{
+    width:100%;
+
+}
+.wafy-button-preview{
+    display:flex;
+    align-content:center;
+    flex-direction: column;
+    gap:2px;
+    h3{
+        color:#0e153a;
+    }
+    &__holder{
+        border:1px solid #000;
+        padding:10px;
+    }
+}
