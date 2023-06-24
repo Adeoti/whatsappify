@@ -30,9 +30,26 @@ if(! current_user_can('manage_options')){
         </div>
         <div class="wafy-row">
             <label for="wafy-pre-message" class="mb-2">Predefined WhatsApp Message</label>
-                <textarea placeholder="" id="wafy-pre-message" class="wafy-text-field" name="whatsappify_agent_field[wafy_pre_message]"></textarea>
+                <textarea placeholder="" style="min-height:100px; resize:none;" id="wafy-pre-message" class="wafy-text-field" name="whatsappify_agent_field[wafy_pre_message]"></textarea>
             
         </div>
+
+        <div class="wafy-row">
+            <p class="label">Availability Status</p>
+
+                <div class="wafy-row two_col">
+                    <div><label style="display:inline;" for="wafy-always-online">Always Online</label> <input type="radio" name="whatsappify_agent_field[wafy_online_status]" value="always" id="wafy-always-online" /></div>
+                    <div><label style="display:inline;" for="wafy-not-always-online">Not Always Online</label> <input type="radio" name="whatsappify_agent_field[wafy_online_status]" vale="not_always" id="wafy-not-always-online" /></div>
+                </div>
+
+            <div class="wafy-availability-toggle">
+
+                Show the choosable dates....
+
+            </div>
+        </div>
+
+
     </div>
 </form>
 

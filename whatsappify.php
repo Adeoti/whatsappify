@@ -57,18 +57,18 @@ require_once plugin_dir_path(__FILE__). "./inc/menus.php";
 
     function wafyAllAccounts(){
         $labels = array(
-            'name' => __('All Accounts', 'whatsappify'),
+            'name' => __('All Agents', 'whatsappify'),
             'edit_item' => __('Edit Account', 'whatsappify'),
-            'all_item' => __('All Account', 'whatsappify'),
-            'view_item' => __('View Account','whatsappify'),
-            'add_new_item' => __('Add Account', 'whatsappify'),
-            'not_found' => __('WhatsAppify Account not found', 'whatsappify'),
-            'not_found_in_search' => __('WhatsAppify Account not found in search result', 'whatsappify'),
+            'all_item' => __('All Agents', 'whatsappify'),
+            'view_item' => __('View Agent','whatsappify'),
+            'add_new_item' => __('Add Agent', 'whatsappify'),
+            'not_found' => __('WhatsAppify Agent not found', 'whatsappify'),
+            'not_found_in_search' => __('WhatsAppify Agent not found in search result', 'whatsappify'),
             'featured_image' => __('Agent Avatar', 'whatsappify'),
             'set_featured_image' => __('Set Agent Avatar', 'whatsappify'),
-            'item_published' => __('Account added successfully' , 'whatsappify'),
-            'item_updated' => __('Account updated successfully', 'whatsappify'),
-            'item_reverted_to_draft' => __('Account swapped to draft', 'whatsappify'),
+            'item_published' => __('Agent added successfully' , 'whatsappify'),
+            'item_updated' => __('Agent updated successfully', 'whatsappify'),
+            'item_reverted_to_draft' => __('Agent swapped to draft', 'whatsappify'),
             'remove_featured_image' => __('Remove Avatar', 'whatsappify')
 
         );
@@ -79,7 +79,7 @@ require_once plugin_dir_path(__FILE__). "./inc/menus.php";
             'show_in_rest' => false,
             'has_archive' => true,
             'rewrite' => array('slug' => 'whatappify-accounts'),
-            'show_in_menu' => 'wafyall_accounts'
+            'show_in_menu' => 'wp-whatsappify-menu'
 
         );
         //register post type for the agents

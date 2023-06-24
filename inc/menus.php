@@ -12,51 +12,48 @@
                 'WhatsAppify',
                 'WhatsAppify', 
                 'manage_options',
-                'wafyall_accounts', 
+                'wp-whatsappify-menu', 
                 array($this, 'wafyMenuTemplateTab'), 
-                'dashicons-car',
+                plugin_dir_url(__FILE__)."../assets/images/whatsappify_icon.svg",
                 48
             );
-            
-           
 
-            //create sub menu B: add new account
+            //create sub menu A: manage whatsapp widgets
             add_submenu_page(
-                'wafyall_accounts',
-                'Create new account',
-                'Create new account',
+                'wp-whatsappify-menu',
+                'New Agent',
+                'New Agent',
                 'manage_options',
-                'wafyall_accounts&tab=new_account', 
-                array($this,'wafyMenuTemplateTab')
+                'post-new.php?post_type=whatsappify_cpt'
+            );
+
+            //create sub menu B: manage whatsapp widgets
+            add_submenu_page(
+                'wp-whatsappify-menu',
+                'Manage Widgets',
+                'Manage Widgets',
+                'manage_options',
+                'wp-whatsappify-manage_widget', 
+                array($this,'wafyMenuWidget')
             );
 
             //create sub menu C: manage whatsapp widgets
             add_submenu_page(
-                'wafyall_accounts',
-                'Manage Widgets',
-                'Manage Widgets',
-                'manage_options',
-                'wafyall_accounts&tab=manage_widget', 
-                array($this,'wafyMenuTemplateTab')
-            );
-
-            //create sub menu C: manage whatsapp widgets
-            add_submenu_page(
-                'wafyall_accounts',
+                'wp-whatsappify-menu',
                 'Master Settings',
                 'Master Settings',
                 'manage_options',
-                'wp-whatsappify&tab=master_settings', 
+                'wp-whatsappify-master_settings', 
                 array($this,'wafyMenuTemplateTab')
             );
 
             //create sub menu D: Supports
             add_submenu_page(
-                'wp-whatsappify',
+                'wp-whatsappify-menu',
                 'Supports',
                 'Supports',
                 'manage_options',
-                'wp-whatsappify&tab=supports', 
+                'wp-whatsappify-supports', 
                 array($this,'wafyMenuTemplateTab')
             );
 
@@ -67,6 +64,9 @@
             require_once plugin_dir_path(__FILE__)."./templates/menutemplate.php";
         }
 
+        public function wafyMenuWidget(){
+            require_once plugin_dir_path(__FILE__). "./templates/widget_tabs.php";
+        }
         
 
 

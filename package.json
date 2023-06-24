@@ -1,0 +1,25 @@
+{
+  "name": "whatsappify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adeoti/whatsappify.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adeoti/whatsappify/issues"
+  },
+  "homepage": "https://github.com/Adeoti/whatsappify#readme",
+  "dependencies": {
+    "@wordpress/scripts": "^26.6.0"
+  }
+}

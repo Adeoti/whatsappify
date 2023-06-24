@@ -34,7 +34,7 @@ if(! current_user_can('manage_options')){
 
 
                         <br><br>
-                    <p style="font-weight:600; color:#0e153a;" class="mb-7">Button Color</p>
+                    <p class="label" class="mb-7">Button Color</p>
                         <div class="wafy-flex">
                         <div>
                             <label for="wafy-button-bg">Background<label>
