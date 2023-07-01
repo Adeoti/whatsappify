@@ -2,11 +2,20 @@
 if(! current_user_can('manage_options')){
     echo "I can't do much if called directly!";
     exit;
+
+    
 }
 ?>
-
+<div class="wafy_admin_wrapper">
+    <div class="wafy_admin_wrapper__header">
+        <img src="<?php echo plugin_dir_url(__FILE__).'../../assets/images/whatsappify_icon.png';?>" >
+        <div>
+            <h3>Manage WhatsAppify Widget</h3>
+            <p>Manage and customize your widget to determine where and how it displays on your website.</p>
+        </div>
+    </div>
+</div>
 <div class="wrap">
-        <h3>Manage WhatsAppify Widget</h3><hr/>
     <?php
         $default_tab = null;
         $tab = "";

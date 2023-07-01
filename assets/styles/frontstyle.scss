@@ -1,0 +1,34 @@
+.wafy-button-preview{
+    display:flex;
+    align-content:center;
+    flex-direction: column;
+    gap:2px;
+    border-radius:8px;
+    h3{
+        color:#0e153a;
+    }
+   &__holder{
+    display:flex;
+    justify-content: center;
+
+        a{
+            text-decoration:none;
+            font-weight:600; 
+            font-size:15px; 
+            display:block; 
+            margin-top:8px;
+        }
+        #wafy_btn_house{
+            display:flex;
+            padding:13px 25px;
+            font-weight:600;
+            margin-top:30px;
+            justify-content: center;
+            gap:7px;
+                span{
+                    font-size:33px;
+                    display:inline-block;
+                }
+        }
+   }
+}
