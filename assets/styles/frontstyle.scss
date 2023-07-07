@@ -16,19 +16,21 @@
             font-weight:600; 
             font-size:15px; 
             display:block; 
-            margin-top:8px;
+            margin-top:11px;
         }
         #wafy_btn_house{
             display:flex;
-            padding:13px 25px;
+            padding:5px 26px;
             font-weight:600;
             margin-top:30px;
             justify-content: center;
             gap:7px;
-                span{
-                    font-size:33px;
-                    display:inline-block;
-                }
+            .wafy-whatsapp-icon{
+                font-size:33px;
+                margin-top:0px;
+                display:inline-block;
+            }
         }
    }
 }
+

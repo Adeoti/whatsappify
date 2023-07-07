@@ -48,7 +48,30 @@ require_once plugin_dir_path(__FILE__). "./inc/menus.php";
         add_action('manage_whatsappify_cpt_posts_custom_column', [$this, 'wafy_agent_table_data'], 10,2);
         add_action('wp_dashboard_setup', [$this, 'wafy_core_widget']);
         add_shortcode('wafy_agent_chat', [$this, 'wafy_agent_shortcode']);
+        add_action('wp_footer',[$this, 'wafy_widget_writer']);
     }
+
+
+    public function wafy_widget_writer($content){
+           
+            
+            $selected_pages = get_option('wafy_pages_to_show', '');
+            $display_status = get_option('wafy_wid_display', '');
+            $selected_pages_arr = explode(',',$selected_pages);
+
+            if($display_status == 1 && is_page($selected_pages_arr)){
+                require_once WAFY_PATH."./inc/templates/tabs/widget-front.php";
+
+            wp_register_style('wafy_widget_style', WAFY_URL."./assets/styles/widget-front.css");
+            wp_enqueue_style('wafy_widget_style');
+
+            wp_register_script('wafy_widget_js', WAFY_URL."./assets/js/widget-front.js");
+            wp_enqueue_script('wafy_widget_js');
+            }
+            
+    }
+
+
 
     //Front Assets Enqueue
     function wafy_front_assets(){
@@ -102,13 +125,14 @@ require_once plugin_dir_path(__FILE__). "./inc/menus.php";
             ob_start();
             ?>
             <div class="wafy-button-preview">
-                <div class="wafy-button-preview__holder"> 
-                    <div href="<?php echo $wafy_link_url; ?>" id="wafy_btn_house" style="background-color:<?php echo $bg; ?>; color:<?php echo $txt_color;?>; <?php echo $style;?>">
-                    <span class="fab fa-whatsapp"></span>
+            <div class="wafy-button-preview__holder"> 
+                    <div id="wafy_btn_house" style="background-color:<?php echo $bg; ?>; color:<?php echo $txt_color;?>; <?php echo $style;?>">
+                    <a href="<?php echo $wafy_link_url; ?>" class="wafy-whatsapp-icon" style="color:<?php echo $txt_color;?>;"><span class="fab fa-whatsapp"></span></a>
                     <a href="<?php echo $wafy_link_url; ?>" id="wafy_preview_btn" style="color:<?php echo $txt_color;?>;">
                         <?php echo $label; ?>
                     </a>
                     </div>
+           
                 </div>
             </div>
             <?php
@@ -281,6 +305,9 @@ require_once plugin_dir_path(__FILE__). "./inc/menus.php";
         );
         //register post type for the agents
         register_post_type('whatsappify_cpt', $args);
+
+        wp_register_script('wafy_cpt_js',WAFY_URL."./assets/js/cpt.js",array(), 1.0, true);
+        wp_enqueue_script('wafy_cpt_js');
     }
 
 

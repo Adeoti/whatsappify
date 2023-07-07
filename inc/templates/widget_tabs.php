@@ -8,7 +8,7 @@ if(! current_user_can('manage_options')){
 ?>
 <div class="wafy_admin_wrapper">
     <div class="wafy_admin_wrapper__header">
-        <img src="<?php echo plugin_dir_url(__FILE__).'../../assets/images/whatsappify_icon.png';?>" >
+        <img src="<?php echo plugin_dir_url(__FILE__).'../../assets/images/whatsappify_logo.png';?>" >
         <div>
             <h3>Manage WhatsAppify Widget</h3>
             <p>Manage and customize your widget to determine where and how it displays on your website.</p>
@@ -34,7 +34,7 @@ if(! current_user_can('manage_options')){
             <a href="<?php echo $tab_prefix;?>agents" class="nav-tab <?php if($tab == 'agents') echo 'nav-tab-active';?>">Choose Agents</a>
             <a href="<?php echo $tab_prefix;?>design" class="nav-tab <?php if($tab == 'design') echo 'nav-tab-active';?>">Design</a>
             <a href="<?php echo $tab_prefix;?>controls" class="nav-tab <?php if($tab == 'controls') echo 'nav-tab-active';?>">Controls</a>
-            <a href="<?php echo $tab_prefix;?>premium" class="nav-tab <?php if($tab == 'premium') echo 'nav-tab-active';?>">Premium</a>
+            <!-- <a href="<?php echo $tab_prefix;?>premium" class="nav-tab <?php if($tab == 'premium') echo 'nav-tab-active';?>">Premium</a> -->
         </nav>
 
         <div class="tab-content">

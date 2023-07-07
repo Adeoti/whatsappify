@@ -1,107 +1,3 @@
-@import 'config';
-.wafy-flex{
-    display:flex;
-    justify-content:space-between;
-    padding:7px;
-   
-}
-.wafy-container{
-    .wafy-row{
-        display:grid;
-        padding:8px;
-        gap:10px;
-
-       &.two_col{
-        grid-template-columns:1fr 1fr;
-       }
-       &.one_half{
-        grid-template-columns:120px 1fr;
-       }
-    }
-    label, .label{
-        font-weight:600 !important;
-        color:#0e153a;
-        display:block;
-       
-    }
-    
-}
-.wafy-text-field{
-    width:100%;
-
-}
-.wafy-button-preview{
-    display:flex;
-    align-content:center;
-    flex-direction: column;
-    gap:2px;
-    background:#d7eaea;
-    border-radius:8px;
-    h3{
-        color:#0e153a;
-    }
-   &__holder{
-    display:flex;
-    justify-content: center;
-
-        a{
-            text-decoration:none;
-        }
-        #wafy_btn_house{
-            display:flex;
-            padding:13px 25px;
-            font-weight:600;
-            margin-top:30px;
-            justify-content: center;
-            gap:7px;
-             span{
-                    font-size:33px;
-                    display:inline-block;
-                }
-        }
-   }
-}
-.wafy-availability-toggle{
-    border:1px solid lightgrey;
-    padding:20px;
-}
-.wafy-agent-active{
-    color: #24b273;
-    font-weight:600;
-}
-.wafy_admin_wrapper{
-    margin:0px 0px 0px -18px;
-    &__header{
-        background-color:#ffffff;
-        padding:10px;
-        display:flex;
-        gap:10px;
-        img{
-            height:80px;
-        }
-        div{
-                
-                p{
-                    margin-top: -11px;
-                }
-        }
-    }
-    
-}
-
-.wafy_agent_row{
-    background:#fbfae1;
-}
-
-.nav-tab-active{
-    color:#24b273 !important;
-    border-bottom:1px solid transparent;
-    
-}
-.nav-tab{
-    border-top-right-radius:10px;
-    border-top-left-radius:10px;
-}
 
 /*
 Wafy Widget Design
@@ -120,12 +16,14 @@ Wafy Widget Design
 
     width:360px;
     padding:0px;
+    opacity:0;
     overflow:hidden;
     border-radius:8px;
+    font-size:13px;
     position:fixed;
-    z-index:1000;
+    z-index:3000;
     right:10px;
-    bottom:100px;
+    bottom:88px;
     box-shadow: 0 7px 14px 0 rgba(65,69,88,.1),0 3px 6px 0 rgba(0,0,0,.07);
     &__head{
         padding:11px;
@@ -150,7 +48,7 @@ Wafy Widget Design
     &__chat-card{
         padding:10px 4px;
         overflow-y:auto;
-
+       max-height:250px;
         &--single{
             display:flex;
             place-content: center;
@@ -168,7 +66,7 @@ Wafy Widget Design
                 }
             }
             .wafy-agent-name{
-                font-weight:600;
+                font-weight:500;
                 display:block;
                 text-decoration:none;
                 color:#0e153a;
@@ -187,15 +85,15 @@ Wafy Widget Design
 
 .wafy-widget-toggler{
     position:fixed;
-    bottom:30px;
+    bottom:8px;
     right:40px;
     display:flex;
     gap:10px;
     &__handle{
-        font-size:15px;
+        font-size:13px;
         padding-top:5px;
         margin-top:10px;
-        opacity:0;
+        opacity:1;
         span{
             padding:7px; 
             border-radius:4px; 
