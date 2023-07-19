@@ -30,7 +30,7 @@ if(! current_user_can('manage_options')){
 
     ?>
 
-        <nav class="nav-tab-wrapper">
+        <nav class="nav-tab-wrapper wafy-tab">
             <a href="<?php echo $tab_prefix;?>agents" class="nav-tab <?php if($tab == 'agents') echo 'nav-tab-active';?>">Choose Agents</a>
             <a href="<?php echo $tab_prefix;?>design" class="nav-tab <?php if($tab == 'design') echo 'nav-tab-active';?>">Design</a>
             <a href="<?php echo $tab_prefix;?>controls" class="nav-tab <?php if($tab == 'controls') echo 'nav-tab-active';?>">Controls</a>

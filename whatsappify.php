@@ -40,6 +40,7 @@ require_once plugin_dir_path(__FILE__). "./inc/menus.php";
     public function fireWafyActions(){
         add_action('admin_menu', [$this, 'wafyMenu']);
         add_action('init', [$this, 'wafyAllAccounts']);
+        add_action('init', [$this, 'wafy_block']);
         add_action('admin_init', [$this, 'whatsAppifyCField']);
         add_action('admin_enqueue_scripts', [$this, 'wafyAssets']);
         add_action('wp_enqueue_scripts', [$this, 'wafy_front_assets']);
@@ -341,6 +342,37 @@ require_once plugin_dir_path(__FILE__). "./inc/menus.php";
        echo "</form>";
     }
 
+
+    public function wafy_block(){
+       register_block_type(__DIR__, array(
+            'render_callback' => array($this, 'wafy_block_template')
+        ));
+    }
+
+    public function wafy_block_template($templates){
+        $json_template =  wp_json_encode($templates);
+        if(!is_admin()){
+            wp_enqueue_script('wafy_block_js', WAFY_URL."./build/front-wafy-block.js", array('wp-element'), 1.0, true);
+        }
+
+            //default settings and overriding
+                $ctabg = $templates['wafyBg'] ?? "green";
+                $ctaText = $templates['wafyText'] ?? "Chat our reps";
+
+
+
+
+            ob_start();
+           $ctastyles = "padding:5px 8px; ";
+            ?>
+                <span class="wafy_cta_block_button">
+                    <pre style="display:none;"><?php echo  $json_template;?></pre>
+
+                </span>
+
+            <?php
+            return ob_get_clean();
+    }
  }
 
  $whatsappify_ade = new WhatsAppify_Ade();

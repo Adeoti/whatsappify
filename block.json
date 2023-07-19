@@ -1,0 +1,8 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "whatsappifyi/wafychat",
+    "editorScript": "file:./build/index.js",  
+    "editorStyle": "file:./build/index.css",
+    "style": [ "file:./build/frontend.css", "example-shared-style" ]
+}
