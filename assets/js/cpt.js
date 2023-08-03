@@ -82,4 +82,8 @@
         btn_preview.style.color = btn_txt_color.value;
     });
     }
+
+    let main_location = window.location.href;
+    if(main_location.indexOf('post_type=whatsappify_cpt') != -1){
     wafyCPTHandler();
+    }

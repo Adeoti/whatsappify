@@ -21,14 +21,20 @@
  }
 
 require_once plugin_dir_path(__FILE__). "./inc/menus.php";
+require_once plugin_dir_path(__FILE__). './inc/Autoload.inc.php';
+//require_once plugin_dir_path(__FILE__).'./classes/WafyAgentType.class.php';
+
+
+
 
  class WhatsAppify_Ade extends wafyiMenu{
 
     
+
     public function init(){
         
         //Define constants
-
+        
         define('WAFY_PATH', plugin_dir_path(__FILE__));
         define('WAFY_BASENAME', plugin_basename(__FILE__));
         define('WAFY_URL', plugin_dir_url(__FILE__));
@@ -39,15 +45,11 @@ require_once plugin_dir_path(__FILE__). "./inc/menus.php";
 
     public function fireWafyActions(){
         add_action('admin_menu', [$this, 'wafyMenu']);
-        add_action('init', [$this, 'wafyAllAccounts']);
-        add_action('init', [$this, 'wafy_block']);
-        add_action('admin_init', [$this, 'whatsAppifyCField']);
         add_action('admin_enqueue_scripts', [$this, 'wafyAssets']);
         add_action('wp_enqueue_scripts', [$this, 'wafy_front_assets']);
         add_action('save_post', [$this, 'wafy_save_agent']);
         add_action('manage_whatsappify_cpt_posts_columns', [$this, 'wafy_agent_heading_layout']);
         add_action('manage_whatsappify_cpt_posts_custom_column', [$this, 'wafy_agent_table_data'], 10,2);
-        add_action('wp_dashboard_setup', [$this, 'wafy_core_widget']);
         add_shortcode('wafy_agent_chat', [$this, 'wafy_agent_shortcode']);
         add_action('wp_footer',[$this, 'wafy_widget_writer']);
     }
@@ -148,18 +150,7 @@ require_once plugin_dir_path(__FILE__). "./inc/menus.php";
 
     }
 
-    public function wafy_core_widget(){
-       
-        wp_add_dashboard_widget('wafywid', "WhatsAppify Stats", [$this, 'wafy_widget_template']);
-    }
-
-    public function wafy_widget_template(){ 
-        $w_icon = plugin_dir_url(__FILE__)."assets/images/whatsappify_icon.png";
-        ?>
-            <img src="<?php echo $w_icon; ?>" style="height:70px;">
-            Customiiizzzeee
-        <?php
-    }
+    
 
     //Populate the headings...
     public function wafy_agent_heading_layout($columns){
@@ -273,107 +264,30 @@ require_once plugin_dir_path(__FILE__). "./inc/menus.php";
     function __construct(){
         $this -> init();
         $this -> fireWafyActions();
-
+       self::render_external_classes();
+       register_activation_hook(__FILE__, [$this, 'activation_helper']);
+        
     }
 
-    function wafyAllAccounts(){
-        $labels = array(
-            'name' => __('WhatsAppify Agents', 'whatsappify'),
-            'edit_item' => __('Edit Account', 'whatsappify'),
-            'all_item' => __('WhatsAppify Agents', 'whatsappify'),
-            'view_item' => __('View Agent','whatsappify'),
-            'add_new' => __('Add Agent', 'whatsappify'),
-            'add_new_item' => __('Add New Agent', 'whatsappify'),
-            'not_found' => __('WhatsAppify Agent not found', 'whatsappify'),
-            'not_found_in_search' => __('WhatsAppify Agent not found in search result', 'whatsappify'),
-            'featured_image' => __('Agent Avatar', 'whatsappify'),
-            'set_featured_image' => __('Set Agent Avatar', 'whatsappify'),
-            'item_published' => __('Agent added successfully' , 'whatsappify'),
-            'item_updated' => __('Agent updated successfully', 'whatsappify'),
-            'item_reverted_to_draft' => __('Agent swapped to draft', 'whatsappify'),
-            'remove_featured_image' => __('Remove Avatar', 'whatsappify')
-
-        );
-        $args = array(
-            'labels' => $labels,
-            'public' => true,
-            'supports' => array('custom-fields','thumbnail'),
-            'show_in_rest' => false,
-            'has_archive' => true,
-            'rewrite' => array('slug' => 'whatappify-accounts'),
-            'show_in_menu' => 'wp-whatsappify-menu'
-
-        );
-        //register post type for the agents
-        register_post_type('whatsappify_cpt', $args);
-
-        wp_register_script('wafy_cpt_js',WAFY_URL."./assets/js/cpt.js",array(), 1.0, true);
-        wp_enqueue_script('wafy_cpt_js');
+    /*
+    Render Actions From External Classes...
+    */
+    public static function render_external_classes(){
+        new WafyAgentType;
+        new WafyCtaBlock(__DIR__);
     }
 
+    //Handle activation hook
 
-
-    public function whatsAppifyCField(){
-       
-        add_meta_box(
-            'whatsappify_agent_field', 
-            'Agent Information', 
-            [$this, 'whatsappifyAgentInformation'], 
-            'whatsappify_cpt',
-            'normal',
-        );
-
-        add_meta_box(
-            'whatsappify_button_field', 
-            'Shortcode Output', 
-            [$this, 'whatsappifyButtonField'], 
-            'whatsappify_cpt',
-            'normal',
-        );
+    public function activation_helper(){
+        $wafy_delete_nonce = wp_create_nonce('wafy_delete_nonce');
+        update_option('wafy_delete_nonce',$wafy_delete_nonce);
     }
+    
 
-    public function whatsappifyAgentInformation(){
-        echo '<form class="mini_fu" method="POST">';
-        require_once WAFY_PATH ."./inc/templates/agentinfo.php";
-    }
-
-    public function whatsappifyButtonField(){
-       require_once WAFY_PATH ."./inc/templates/buttonstyle.php";
-       echo "</form>";
-    }
-
-
-    public function wafy_block(){
-       register_block_type(__DIR__, array(
-            'render_callback' => array($this, 'wafy_block_template')
-        ));
-    }
-
-    public function wafy_block_template($templates){
-        $json_template =  wp_json_encode($templates);
-        if(!is_admin()){
-            wp_enqueue_script('wafy_block_js', WAFY_URL."./build/front-wafy-block.js", array('wp-element'), 1.0, true);
-        }
-
-            //default settings and overriding
-                $ctabg = $templates['wafyBg'] ?? "green";
-                $ctaText = $templates['wafyText'] ?? "Chat our reps";
-
-
-
-
-            ob_start();
-           $ctastyles = "padding:5px 8px; ";
-            ?>
-                <span class="wafy_cta_block_button">
-                    <pre style="display:none;"><?php echo  $json_template;?></pre>
-
-                </span>
-
-            <?php
-            return ob_get_clean();
-    }
  }
 
  $whatsappify_ade = new WhatsAppify_Ade();
+
+
 
